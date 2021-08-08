@@ -19,3 +19,35 @@ Route::resource('users', \App\Http\Controllers\UsersController::class)
     ->except('create', 'edit');
 
 
+Route::resource(
+    'transactions.categories',
+    \App\Http\Controllers\TransactionCategoryController::class
+    )->only(['index', 'show']);
+
+Route::resource(
+    'transactions.sellers',
+    \App\Http\Controllers\TransactionSellerController::class
+)->only(['index', 'show']);
+
+Route::resource(
+    'buyers.transactions',
+    \App\Http\Controllers\BuyerTransactionController::class
+)->only(['index', 'show']);
+
+Route::resource(
+    'buyers.products',
+    \App\Http\Controllers\BuyerProductController::class
+)->only(['index', 'show']);
+
+Route::resource(
+    'buyers.sellers',
+    \App\Http\Controllers\BuyerSellerController::class
+)->only(['index', 'show']);
+
+Route::resource(
+    'buyers.categories',
+    \App\Http\Controllers\BuyerCategoryController::class
+)->only(['index', 'show']);
+
+
+
