@@ -40,6 +40,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'verification_token',
     ];
 
     public function isVerified()
@@ -56,4 +57,22 @@ class User extends Authenticatable
     {
         return Str::random(40);
     }
+
+    public function getNameAttribute()
+    {
+        return ucwords($this->name);
+    }
+
+    /* MUTATORS */
+
+    public function setNameAttribute(String $name)
+    {
+        $this->attributes['name'] = $name;
+    }
+
+    public function setEmailAttribute(String $email)
+    {
+        $this->attributes['email'] = $email;
+    }
+
 }
