@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class UsersController extends ApiController
 {
 
     public function index()
     {
         $users = User::all();
-        return response()->json(['data' => $users, 'code' => 200], 200);
+        return $this->showAll($users);
     }
 
     public function store(Request $request)
@@ -30,12 +30,12 @@ class UsersController extends Controller
         $data['admin'] = User::REGULAR_USER;
 
         $user = User::create($data);
-        return response()->json(['data' => $user, 'code' => 201], 201);
+        return $this->showOne($user, 201);
     }
 
     public function show(User $user)
     {
-        return response()->json(['data' => $user, 'code' => 200], 200);
+        return $this->showOne($user, 200);
     }
 
     public function update(Request $request, User $user)
@@ -77,13 +77,13 @@ class UsersController extends Controller
         }
 
         $user->save();
-        return response()->json(['data' => $user, 'code' => 200], 200);
+        return $this->showOne($user, 200);
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return response()->json(['data' => $user, 'code' => 200], 200);
+        return $this->showOne($user, 200);
     }
 
 }

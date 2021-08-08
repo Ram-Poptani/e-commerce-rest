@@ -60,7 +60,7 @@ class User extends Authenticatable
 
     public function getNameAttribute()
     {
-        return ucwords($this->name);
+        return ucwords($this->attributes['name']);
     }
 
     /* MUTATORS */
