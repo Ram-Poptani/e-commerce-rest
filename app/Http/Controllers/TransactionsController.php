@@ -12,4 +12,9 @@ class TransactionsController extends ApiController
         $transactions = Transaction::all();
         return $this->showAll($transactions);
     }
+
+    public function show(Transaction $transaction)
+    {
+        return $this->showOne($transaction);
+    }
 }
