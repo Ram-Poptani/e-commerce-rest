@@ -41,4 +41,10 @@ class CategoriesController extends ApiController
         $category->save();
         return $this->showOne($category);
     }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return $this->showOne($category);
+    }
 }
