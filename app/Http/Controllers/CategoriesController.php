@@ -25,4 +25,9 @@ class CategoriesController extends ApiController
         $category = Category::create($data);
         return $this->showOne($category, 201);
     }
+
+    public function show(Category $category)
+    {
+        return $this->showOne($category);
+    }
 }
