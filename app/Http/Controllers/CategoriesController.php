@@ -30,4 +30,15 @@ class CategoriesController extends ApiController
     {
         return $this->showOne($category);
     }
+
+    public function update(Request $request, Category $category)
+    {
+        $category->fill($request->only(['name', 'description']));
+
+        if ($category->isClean()) {
+            return $this->errorResponse("You need to change something to update", 422);
+        }
+        $category->save();
+        return $this->showOne($category);
+    }
 }
