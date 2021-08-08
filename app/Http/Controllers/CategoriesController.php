@@ -12,4 +12,17 @@ class CategoriesController extends ApiController
         $categories = Category::all();
         return $this->showAll($categories);
     }
+
+    public function store(Request $request)
+    {
+        $rules = [
+            'name' => 'required|min:2',
+            'description' => 'required|min:2',
+        ];
+        $this->validate($request, $rules);
+
+        $data = $request->all();
+        $category = Category::create($data);
+        return $this->showOne($category, 201);
+    }
 }
