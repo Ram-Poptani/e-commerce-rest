@@ -15,6 +15,13 @@ trait ResponseHelper
         return response()->json($data, $code);
     }
 
+    protected function reportMultipleErrors(mixed $message, int $code)
+    {
+        return response()->json([
+            'code' => $code,
+            'error' => $message,
+        ], $code);
+    }
     protected function errorResponse(string $message, int $code): \Illuminate\Http\JsonResponse
     {
         return response()->json([
