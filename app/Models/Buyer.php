@@ -10,4 +10,9 @@ class Buyer extends User
     use HasFactory;
 
     protected $table = "users";
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
