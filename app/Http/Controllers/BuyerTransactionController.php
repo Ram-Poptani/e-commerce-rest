@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction;
-use Illuminate\Http\Request;
+use App\Models\Buyer;
 
 class BuyerTransactionController extends Controller
 {
