@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Buyer;
-use App\Models\Product;
 use App\Models\Seller;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TransactionFactory extends Factory
@@ -25,11 +25,11 @@ class TransactionFactory extends Factory
     public function definition()
     {
         $seller = Seller::has('products')->with('products')->get()->random();
-        $buyer = Buyer::all()->except($seller->id)->random();
+        $buyer = User::all()->except($seller->id)->random();
         return [
-            'quantity' => $this->faker->numberBetween(1, 10),
+            'quantity' => $this->faker->numberBetween(1, 3),
             'buyer_id' => $buyer->id,
-            'product_id' => Product::all()->random()->id
+            'product_id' => $seller->products->random()->id
         ];
     }
 }
