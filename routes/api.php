@@ -12,6 +12,8 @@ Route::resource('sellers', \App\Http\Controllers\SellersController::class)
     ->only('index', 'show');
 Route::resource('sellers.transactions', \App\Http\Controllers\SellerTransactionController::class)
     ->only('index');
+Route::resource('sellers.categories', \App\Http\Controllers\SellerCategoryController::class)
+    ->only('index');
 
 
 Route::resource('categories', \App\Http\Controllers\CategoriesController::class)
