@@ -17,6 +17,8 @@ Route::resource('categories', \App\Http\Controllers\CategoriesController::class)
     ->except('create', 'edit');
 Route::resource('categories.products', \App\Http\Controllers\CategoryProductController::class)
     ->only('index');
+Route::resource('categories.sellers', \App\Http\Controllers\CategoryProductController::class)
+    ->only('index');
 
 
 Route::resource('transactions', \App\Http\Controllers\TransactionsController::class)
