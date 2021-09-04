@@ -37,5 +37,44 @@ class SellerProductController extends ApiController
         $product = Product::create($data);
         return $this->showOne($product);
     }
-    
+
+    public function update(Request $request, Seller $seller, Product $product)
+    {
+        $this->verifySeller($seller, $product);
+
+        $rules = [
+            'name' => 'min:1',
+            'description' => 'min:5',
+            'quantity' => 'integer|min:1',
+            'status' => 'in:' . Product::UNAVAILABLE_PRODUCT . ',' . Product::AVAILABLE_PRODUCT,
+            'image' => 'image'
+        ];
+
+        $this->validate($request, $rules);
+
+        $product->fill(
+            $request->only([
+                'name',
+                'description',
+                'quantity'
+            ])
+        );
+
+        if ($request->has('statuus')) {
+            $product->status = $request->status;
+
+            if ($product->isAvailable() && $product->categories()->count() == 0) {
+                return $this->errorResponse("A product must be associated with atleast one category to be Availabale!", 409);
+            }
+        }
+
+        // TODO : Image Update needs to be handled!
+
+        if ($product->isClean()) {
+            return $this->errorResponse("You have not updated any value!!", 422);
+        }
+
+        $product->save();
+        return $this->showOne($product);
+    }
 }
