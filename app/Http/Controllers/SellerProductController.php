@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SellerProductController extends ApiController
 {
@@ -83,5 +84,13 @@ class SellerProductController extends ApiController
         $this->verifySeller($seller, $product);
         $product->delete();
         return $this->showOne($product);
+    }
+
+    private function verifySeller(Seller $seller, Product $product)
+    {
+        if ($seller->id != $product->seller_id)
+        {
+            throw new HttpException(422, "You are trying to update someone else's product!");
+        }
     }
 }
