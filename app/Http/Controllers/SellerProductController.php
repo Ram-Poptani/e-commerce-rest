@@ -77,4 +77,11 @@ class SellerProductController extends ApiController
         $product->save();
         return $this->showOne($product);
     }
+
+    public function destroy(Seller $seller, Product $product)
+    {
+        $this->verifySeller($seller, $product);
+        $product->delete();
+        return $this->showOne($product);
+    }
 }
