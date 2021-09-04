@@ -21,6 +21,8 @@ Route::resource('categories.sellers', \App\Http\Controllers\CategoryProductContr
     ->only('index');
 Route::resource('categories.transactions', \App\Http\Controllers\CategoryTransactionController::class)
     ->only('index');
+Route::resource('categories.buyers', \App\Http\Controllers\CategoryBuyerController::class)
+    ->only('index');
 
 
 Route::resource('transactions', \App\Http\Controllers\TransactionsController::class)
