@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Buyer;
 
 use App\Models\Buyer;
+use App\Http\Controllers\ApiController;
 
 class BuyersController extends ApiController
 {

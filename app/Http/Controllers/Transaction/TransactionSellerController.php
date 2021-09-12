@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Transaction;
 
+use App\Http\Controllers\ApiController;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
-class TransactionSellerController extends Controller
+class TransactionSellerController extends ApiController
 {
     public function index(Transaction $transaction)
     {

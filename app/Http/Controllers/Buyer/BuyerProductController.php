@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Buyer;
 
 use App\Models\Buyer;
+use App\Http\Controllers\ApiController;
 
-class BuyerProductController extends Controller
+class BuyerProductController extends ApiController
 {
     public function index(Buyer $buyer)
     {
