@@ -54,7 +54,8 @@ Route::resource('products',\App\Http\Controllers\Product\ProductsController::cla
     ->only('index','show');
 Route::resource('products.buyers', \App\Http\Controllers\Product\ProductBuyerController::class)
     ->only('index');
-
+Route::resource('products.categories', \App\Http\Controllers\Product\ProductCategoryController::class)
+    ->only('index');
 
 
 
