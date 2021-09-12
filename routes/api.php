@@ -58,6 +58,8 @@ Route::resource('products.categories', \App\Http\Controllers\Product\ProductCate
     ->only('index');
 Route::resource('products.transactions', \App\Http\Controllers\Product\ProductTransactionController::class)
     ->only('index');
+Route::resource('products.buyers.transactions', \App\Http\Controllers\Product\ProductBuyerTransactionController::class)
+    ->only('index');
 
 
 
