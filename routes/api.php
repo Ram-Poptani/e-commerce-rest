@@ -102,6 +102,10 @@ Route::resource(
 
 Route::resource('users', \App\Http\Controllers\User\UsersController::class)
     ->except('create', 'edit');
+Route::get('users/verify/{token}', [\App\Http\Controllers\User\UsersController::class, 'verify'])
+    ->name('users.verify');
+Route::get('users/verify/{user}/resend-verification-email', [\App\Http\Controllers\User\UsersController::class, 'resend'])
+    ->name('users.resend');
 
 
 
