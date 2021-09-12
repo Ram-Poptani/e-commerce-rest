@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Buyer;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Seller;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -19,7 +21,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::flushEventListeners();
+        Category::flushEventListeners();
+        Product::flushEventListeners();
+        Transaction::flushEventListeners();
+        Buyer::flushEventListeners();
+        Seller::flushEventListeners();
 
         if (App::environment() === 'production') {
             exit();
