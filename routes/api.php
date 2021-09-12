@@ -55,11 +55,11 @@ Route::resource('products',\App\Http\Controllers\Product\ProductsController::cla
 Route::resource('products.buyers', \App\Http\Controllers\Product\ProductBuyerController::class)
     ->only('index');
 Route::resource('products.categories', \App\Http\Controllers\Product\ProductCategoryController::class)
-    ->only('index');
+    ->only('index', 'update', 'destroy');
 Route::resource('products.transactions', \App\Http\Controllers\Product\ProductTransactionController::class)
     ->only('index');
 Route::resource('products.buyers.transactions', \App\Http\Controllers\Product\ProductBuyerTransactionController::class)
-    ->only('index');
+    ->only('store');
 
 
 
