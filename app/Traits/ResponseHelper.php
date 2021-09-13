@@ -31,6 +31,16 @@ trait ResponseHelper
     }
 
     protected function showAll(Collection $collection, int $code = 200) {
+
+        if ($collection->isEmpty())
+        {
+            return $this->successResponse([
+                'code' => $code,
+                'count' => 0,
+                'data' => $collection
+            ], $code);
+        }
+
         $transformer = $collection->first()->transformer;
         $transformedCollection = $this->transformData($collection, $transformer);
         return $this->successResponse([
