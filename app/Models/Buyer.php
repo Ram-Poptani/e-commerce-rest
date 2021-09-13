@@ -11,6 +11,11 @@ class Buyer extends User
 
     protected $table = "users";
 
+    public function __construct()
+    {
+        array_push($this->hidden, 'admin');
+    }
+
     protected static function boot()
     {
         parent::boot();
