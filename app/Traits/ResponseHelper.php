@@ -69,4 +69,16 @@ trait ResponseHelper
         return $transformedData->toArray();
     }
 
+    protected function sort(Collection $collection, string $transformer)
+    {
+        if (request()->has('sort_by'))
+        {
+            $transformedAttribute = request('sort_by');
+            $sortByAttribute = $transformer::getOriginalAttribute($transformedAttribute);
+            $collection = $collection->sortBy($sortByAttribute);
+        }
+
+        return $collection;
+    }
+
 }
