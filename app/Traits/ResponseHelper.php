@@ -31,17 +31,21 @@ trait ResponseHelper
     }
 
     protected function showAll(Collection $collection, int $code = 200) {
+        $transformer = $collection->first()->transformer;
+        $transformedCollection = $this->transformData($collection, $transformer);
         return $this->successResponse([
             'code' => $code,
             'count' => $collection->count(),
-            'data' => $collection
+            'data' => $transformedCollection['data']
         ], $code);
     }
 
     protected function showOne(Model $model, int $code = 200) {
+        $transformer = $model->transformer;
+        $transformedData = $this->transformData($model, $transformer);
         return $this->successResponse([
             'code' => $code,
-            'data' => $model
+            'data' => $transformedData['data']
         ], $code);
     }
 
