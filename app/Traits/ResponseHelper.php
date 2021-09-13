@@ -49,4 +49,10 @@ trait ResponseHelper
         return $this->successResponse(['data' => $message], $code);
     }
 
+    protected function transformData($data, string $transformer)
+    {
+        $transformedData = fractal($data, new $transformer);
+        return $transformedData->toArray();
+    }
+
 }
