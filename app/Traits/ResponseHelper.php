@@ -84,4 +84,25 @@ trait ResponseHelper
         return $collection;
     }
 
+    protected function filter(Collection $collection, string $transformer)
+    {
+        foreach (request()->query() as $filterBy => $value) {
+            if ($this->isFilterableAttribute($filterBy)) {
+                $actualAttribute = $transformer::getOriginalAttribute($filterBy);
+                if (isset($actualAttribute, $value)) {
+                    $collection = $collection->where($actualAttribute, $value);
+                }
+            }
+        }
+
+        return $collection;
+    }
+
+    private function isFilterableAttribute(string $attribute) : bool
+    {
+        return ! in_array($attribute, [
+            'sort_by',
+        ]);
+    }
+
 }
