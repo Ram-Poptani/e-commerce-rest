@@ -146,7 +146,9 @@ trait ResponseHelper
 
         $queryString = http_build_query($queryParameters);
 
-        $fullUrl = "{$url}?{$queryString}";
+        $method = request()->getMethod();
+
+        $fullUrl = "{$method}:{$url}?{$queryString}";
 
         return Cache::remember($fullUrl, 30, function () use ($data) {
             return $data;

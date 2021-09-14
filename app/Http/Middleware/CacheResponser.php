@@ -24,7 +24,9 @@ class CacheResponser
 
         $queryString = http_build_query($queryParameters);
 
-        $fullUrl = "{$url}?{$queryString}";
+        $method = request()->getMethod();
+
+        $fullUrl = "{$method}:{$url}?{$queryString}";
 
         if (Cache::has($fullUrl)) {
             return Cache::get($fullUrl);
