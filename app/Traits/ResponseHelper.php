@@ -7,6 +7,7 @@ namespace App\Traits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 
 trait ResponseHelper
@@ -132,6 +133,22 @@ trait ResponseHelper
         $paginator->appends(request()->all());
 
         return $paginator;
+    }
+
+    protected function cacheResponse(mixed $data)
+    {
+        $url = request()->url();
+        $queryParameters = request()->query();
+
+        ksort($queryParameters);
+
+        $queryString = http_build_query($queryParameters);
+
+        $fullUrl = "{$url}?{$queryString}";
+
+        return Cache::remember($fullUrl, 30, function () use ($data) {
+            return $data;
+        });
     }
 
 }
