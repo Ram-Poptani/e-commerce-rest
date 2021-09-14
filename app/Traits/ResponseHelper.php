@@ -105,7 +105,6 @@ trait ResponseHelper
         return ! in_array($attribute, [
             'sort_by',
             'per_page',
-            'page'
         ]);
     }
 
@@ -126,8 +125,8 @@ trait ResponseHelper
 
         $results = $collection->slice($elementsPerPage * ($page - 1), $elementsPerPage);
 
-        $paginator = new LengthAwarePaginator($results, $collection->count(), $elementsPerPage, [
-            'path' => LengthAwarePaginator::resolveCurrentPage()
+        $paginator = new LengthAwarePaginator($results, $collection->count(), $elementsPerPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
         ]);
 
         $paginator->appends(request()->all());
