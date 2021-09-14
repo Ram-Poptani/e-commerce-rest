@@ -15,6 +15,8 @@ trait ResponseHelper
 
     private function successResponse(mixed $data, int $code): \Illuminate\Http\JsonResponse
     {
+        $this->cacheResponse($data);
+
         return response()->json($data, $code);
     }
 
