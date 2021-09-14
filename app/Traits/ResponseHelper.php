@@ -47,13 +47,12 @@ trait ResponseHelper
 
         $collection = $this->sort($collection, $transformer);
         $collection = $this->filter($collection, $transformer);
+        $collection = $this->paginate($collection);
 
         $transformedCollection = $this->transformData($collection, $transformer);
-        return $this->successResponse([
-            'code' => $code,
-            'count' => $collection->count(),
-            'data' => $transformedCollection['data']
-        ], $code);
+        $transformedCollection['count'] = $collection->count();
+        $transformedCollection['code'] = $code;
+        return $this->successResponse($transformedCollection, $code);
     }
 
     protected function showOne(Model $model, int $code = 200) {
@@ -105,6 +104,8 @@ trait ResponseHelper
     {
         return ! in_array($attribute, [
             'sort_by',
+            'per_page',
+            'page'
         ]);
     }
 
