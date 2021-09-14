@@ -5,7 +5,9 @@ namespace App\Traits;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
 
 trait ResponseHelper
 {
@@ -104,6 +106,32 @@ trait ResponseHelper
         return ! in_array($attribute, [
             'sort_by',
         ]);
+    }
+
+    protected function paginate(Collection $collection)
+    {
+        $rules = [
+            'per_page' => 'integer|min:10|max:100',
+        ];
+
+        Validator::validate(request()->all(), $rules);
+
+        $page = LengthAwarePaginator::resolveCurrentPage();
+        $elementsPerPage = 15;
+
+        if (request()->has('per_page')) {
+            $elementsPerPage = (int)request('per_page');
+        }
+
+        $results = $collection->slice($elementsPerPage * ($page - 1), $elementsPerPage);
+
+        $paginator = new LengthAwarePaginator($results, $collection->count(), $elementsPerPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPage()
+        ]);
+
+        $paginator->appends(request()->all());
+
+        return $paginator;
     }
 
 }
