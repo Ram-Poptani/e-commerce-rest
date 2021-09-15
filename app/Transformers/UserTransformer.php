@@ -59,4 +59,20 @@ class UserTransformer extends TransformerAbstract
 
         return $attribute[$transformedAttribute] ?? null;
     }
+
+    public static function getTransformedAttribute(string $originalAttribute)
+    {
+        $attribute = [
+            'id' => 'identifier',
+            'name' => 'name',
+            'email' => 'email',
+            'verified' => 'isVerified',
+            'admin' => 'isAdmin',
+            'created_at' => 'creationDate',
+            'updated_at' => 'lastChangeDate',
+            'deleted_at' => 'deletionDate',
+        ];
+
+        return $attribute[$originalAttribute] ?? null;
+    }
 }
