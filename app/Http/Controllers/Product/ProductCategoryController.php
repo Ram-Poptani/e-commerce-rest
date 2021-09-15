@@ -7,10 +7,19 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\ApiController;
 use App\Models\Category;
 use App\Models\Product;
+use App\Transformers\CategoryTransformer;
 use Illuminate\Http\Request;
 
 class ProductCategoryController extends ApiController
 {
+
+    public function __construct()
+    {
+        $this->middleware('transform.input:'.CategoryTransformer::class)
+            ->only(
+                'update'
+            );
+    }
 
     public function index(Product $product)
     {
