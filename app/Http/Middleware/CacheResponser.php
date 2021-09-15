@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Response;
 
 class CacheResponser
 {
@@ -29,7 +30,7 @@ class CacheResponser
         $fullUrl = "{$method}:{$url}?{$queryString}";
 
         if (Cache::has($fullUrl)) {
-            return Cache::get($fullUrl);
+            return new Response(Cache::get($fullUrl));
         }
 
         return $next($request);
