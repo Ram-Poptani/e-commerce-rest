@@ -52,6 +52,8 @@ class UserTransformer extends TransformerAbstract
             'email' => 'email',
             'isVerified' => 'verified',
             'isAdmin' => 'admin',
+            'password' => 'password',
+            'password_confirmation' => 'password_confirmation',
             'creationDate' => 'created_at',
             'lastChangeDate' => 'updated_at',
             'deletionDate' => 'deleted_at',
