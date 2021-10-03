@@ -109,7 +109,7 @@ Route::get('users/verify/{user}/resend-verification-email', [\App\Http\Controlle
 
 
 
-
-
-
-
+/**
+ * Passport Routes
+ */
+\Laravel\Passport\Passport::routes();
