@@ -16,6 +16,11 @@ class CategoriesController extends ApiController
                 'store',
                 'update'
             );
+        $this->middleware('client.credentials')
+            ->only(
+                'index',
+                'show'
+            );
     }
 
     public function index()
