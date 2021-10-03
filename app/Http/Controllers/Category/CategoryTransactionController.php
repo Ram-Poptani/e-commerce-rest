@@ -8,6 +8,13 @@ use App\Models\Category;
 
 class CategoryTransactionController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('auth.api')
+            ->only(
+                'index'
+            );
+    }
 
     public function index(Category $category)
     {

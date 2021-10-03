@@ -8,6 +8,14 @@ use App\Http\Controllers\ApiController;
 
 class TransactionsController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('auth.api')
+            ->only(
+                'index'
+            );
+    }
+
     public function index()
     {
         $transactions = Transaction::all();

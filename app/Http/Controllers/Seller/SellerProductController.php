@@ -22,6 +22,10 @@ class SellerProductController extends ApiController
                 'store',
                 'update'
             );
+        $this->middleware('auth.api')
+            ->only(
+                'index'
+            );
     }
 
     public function index(Seller $seller)

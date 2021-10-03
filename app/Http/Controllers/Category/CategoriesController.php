@@ -21,6 +21,10 @@ class CategoriesController extends ApiController
                 'index',
                 'show'
             );
+        $this->middleware('auth.api')
+            ->only(
+                'index'
+            );
     }
 
     public function index()

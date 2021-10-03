@@ -7,6 +7,14 @@ use App\Http\Controllers\ApiController;
 
 class BuyerTransactionController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('auth.api')
+            ->only(
+                'index'
+            );
+    }
+
     public function index(Buyer $buyer)
     {
         $transactions = $buyer->transactions;

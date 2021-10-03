@@ -25,6 +25,12 @@ class UsersController extends ApiController
                 'store',
                 'resend'
             );
+        $this->middleware('auth.api')
+            ->only(
+                'store',
+                'resend',
+                'verify'
+            );
     }
 
     public function index()

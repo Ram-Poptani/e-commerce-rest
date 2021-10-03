@@ -21,6 +21,10 @@ class ProductBuyerTransactionController extends ApiController
             ->only(
                 'store'
             );
+        $this->middleware('auth.api')
+            ->only(
+                'index'
+            );
     }
 
     public function store(Request $request, Product $product, Buyer $buyer)

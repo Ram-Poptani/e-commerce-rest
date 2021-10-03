@@ -24,6 +24,11 @@ class ProductCategoryController extends ApiController
             ->only(
                 'index'
             );
+
+        $this->middleware('auth.api')
+            ->only(
+                'index'
+            );
     }
 
     public function index(Product $product)
