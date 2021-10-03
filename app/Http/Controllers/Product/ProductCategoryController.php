@@ -19,6 +19,11 @@ class ProductCategoryController extends ApiController
             ->only(
                 'update'
             );
+
+        $this->middleware('client.credentials')
+            ->only(
+                'index'
+            );
     }
 
     public function index(Product $product)
