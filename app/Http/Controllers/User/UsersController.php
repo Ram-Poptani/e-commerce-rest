@@ -25,7 +25,7 @@ class UsersController extends ApiController
                 'store',
                 'resend'
             );
-        $this->middleware('auth.api')
+        $this->middleware('auth:api')
             ->only(
                 'store',
                 'resend',
