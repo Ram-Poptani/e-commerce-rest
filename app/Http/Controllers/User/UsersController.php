@@ -36,6 +36,19 @@ class UsersController extends ApiController
                 'show',
                 'update'
             );
+
+        $this->middleware('can:view,user')
+            ->only(
+                'show'
+            );
+        $this->middleware('can:update,user')
+            ->only(
+                'update'
+            );
+        $this->middleware('can:delete,user')
+            ->only(
+                'destroy'
+            );
     }
 
     public function index()
