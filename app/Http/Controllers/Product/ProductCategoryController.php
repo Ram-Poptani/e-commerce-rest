@@ -33,6 +33,15 @@ class ProductCategoryController extends ApiController
             ->except(
                 'index'
             );
+
+        $this->middleware('can:add-category,product')
+            ->except(
+                'update'
+            );
+        $this->middleware('can:delete-category,product')
+            ->except(
+                'destroy'
+            );
     }
 
     public function index(Product $product)
