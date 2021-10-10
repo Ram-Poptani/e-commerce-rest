@@ -18,6 +18,10 @@ class TransactionSellerController extends ApiController
             ->only(
                 'index'
             );
+        $this->middleware('can:view,transaction')
+            ->only(
+                'index'
+            );
     }
 
     public function index(Transaction $transaction)
