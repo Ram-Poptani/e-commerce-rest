@@ -10,6 +10,13 @@ class ProductPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user, $ability)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+    }
+
     public function addCategory(User $user, Product $product)
     {
         return $user->id === $product->seller->id;
