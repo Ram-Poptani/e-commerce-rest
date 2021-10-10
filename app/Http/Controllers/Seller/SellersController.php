@@ -18,6 +18,10 @@ class SellersController extends ApiController
             ->only(
                 'show'
             );
+        $this->middleware('can:view,seller')
+            ->only(
+                'show'
+            );
     }
 
     public function index()
