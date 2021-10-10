@@ -12,7 +12,12 @@ class BuyersController extends ApiController
     {
         $this->middleware('auth:api')
             ->only(
-                'index'
+                'index',
+                'show'
+            );
+        $this->middleware('scope:read-general')
+            ->only(
+                'show'
             );
     }
 

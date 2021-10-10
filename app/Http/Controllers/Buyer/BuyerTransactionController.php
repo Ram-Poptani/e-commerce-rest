@@ -13,6 +13,10 @@ class BuyerTransactionController extends ApiController
             ->only(
                 'index'
             );
+        $this->middleware('scope:read-general')
+            ->only(
+                'index'
+            );
     }
 
     public function index(Buyer $buyer)

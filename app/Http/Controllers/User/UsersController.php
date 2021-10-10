@@ -31,6 +31,11 @@ class UsersController extends ApiController
                 'resend',
                 'verify'
             );
+        $this->middleware('scope:manage-account')
+            ->only(
+                'show',
+                'update'
+            );
     }
 
     public function index()

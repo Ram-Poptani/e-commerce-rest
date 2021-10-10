@@ -29,6 +29,10 @@ class ProductCategoryController extends ApiController
             ->only(
                 'index'
             );
+        $this->middleware('scope:manage-product')
+            ->except(
+                'index'
+            );
     }
 
     public function index(Product $product)

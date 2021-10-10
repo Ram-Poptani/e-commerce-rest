@@ -14,6 +14,10 @@ class TransactionsController extends ApiController
             ->only(
                 'index'
             );
+        $this->middleware('scope:read-general')
+            ->only(
+                'show'
+            );
     }
 
     public function index()
