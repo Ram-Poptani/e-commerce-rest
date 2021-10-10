@@ -17,6 +17,10 @@ class BuyerProductController extends ApiController
             ->only(
                 'index'
             );
+        $this->middleware('can:view,buyer')
+            ->only(
+                'index'
+            );
     }
 
     public function index(Buyer $buyer)

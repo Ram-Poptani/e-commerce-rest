@@ -29,6 +29,10 @@ class ProductBuyerTransactionController extends ApiController
             ->only(
                 'store'
             );
+        $this->middleware('can:view,buyer')
+            ->only(
+                'store'
+            );
     }
 
     public function store(Request $request, Product $product, Buyer $buyer)
